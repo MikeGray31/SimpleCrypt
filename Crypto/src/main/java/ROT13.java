@@ -1,3 +1,7 @@
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import static java.lang.Character.*;
 
 public class ROT13  {
@@ -15,15 +19,15 @@ public class ROT13  {
         this.cf = 'm';
     }
 
-    public String crypt(String text) throws UnsupportedOperationException {
+    String crypt(String text) throws UnsupportedOperationException {
         return shiftThis(text,this.cf, 1);
     }
 
-    public String encrypt(String text) {
+    String encrypt(String text) {
         return shiftThis(text, this.cf,1);
     }
 
-    public String decrypt(String text) {
+    String decrypt(String text) {
         return shiftThis(text, this.cf,-1);
     }
 
@@ -47,29 +51,19 @@ public class ROT13  {
             boolean notALetter = true;
             Character next =  text.charAt(i);
             if(isAlphabetic(text.charAt(i))){
+
                 next =(char) (next + shift);
                 while(notALetter){
+
                     if(isLowerCase(text.charAt(i))){
-                        if(next > 'z'){
-                            next = (char) (next - 26);
-                        }
-                        else if(next < 'a'){
-                            next = (char) (next + 26);
-                        }
-                        else{
-                            notALetter = false;
-                        }
+                        if(next > 'z') next = (char) (next - 26);
+                        else if(next < 'a') next = (char) (next + 26);
+                        else notALetter = false;
                     }
                     else if(isUpperCase(text.charAt(i))){
-                        if(next > 'Z'){
-                            next = (char) (next - 26);
-                        }
-                        else if(next < 'A'){
-                            next = (char) (next + 26);
-                        }
-                        else{
-                            notALetter = false;
-                        }
+                        if(next > 'Z') next = (char) (next - 26);
+                        else if(next < 'A') next = (char) (next + 26);
+                        else notALetter = false;
                     }
                 }
             }
@@ -90,5 +84,15 @@ public class ROT13  {
             result+= s.charAt(i);
         }
         return result;
+    }
+
+    public String cryptFile(){
+        try {
+            String fileText = new String(Files.readAllBytes(Paths.get("/Users/mike/Desktop/dev/Week 5/SimpleCrypt/sonnet18.txt")));
+            return crypt(fileText);
+        }
+        catch (Exception e){
+            return "";
+        }
     }
 }
