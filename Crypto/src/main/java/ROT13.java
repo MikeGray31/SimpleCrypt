@@ -86,9 +86,9 @@ public class ROT13  {
         return result;
     }
 
-    public String cryptFile(){
+    public String cryptFile(String fileName){
         try {
-            String fileText = new String(Files.readAllBytes(Paths.get("/Users/mike/Desktop/dev/Week 5/SimpleCrypt/sonnet18.txt")));
+            String fileText = new String(Files.readAllBytes(Paths.get(fileName)));
             return crypt(fileText);
         }
         catch (Exception e){

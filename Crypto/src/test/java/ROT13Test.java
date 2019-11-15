@@ -1,4 +1,9 @@
+import org.junit.Assert;
 import org.junit.Test;
+
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
 
@@ -88,4 +93,19 @@ public class ROT13Test {
         assertEquals(Q1, actual);
     }
 
+    @Test
+    public void cryptFileTest(){
+        ROT13 cipher = new ROT13('a', 'n');
+        try {
+            String fileText = new String(Files.readAllBytes(Paths.get("/Users/mike/Desktop/dev/Week 5/SimpleCrypt/sonnet18.txt")));
+            String cipheredFileText = cipher.crypt(fileText);
+            PrintWriter writer = new PrintWriter("/Users/mike/Desktop/dev/Week 5/SimpleCrypt/sonnet18.enc", "UTF-8");
+            writer.print(cipheredFileText);
+            writer.close();
+            Assert.assertEquals(fileText, cipher.cryptFile("/Users/mike/Desktop/dev/Week 5/SimpleCrypt/sonnet18.enc"));
+        }
+        catch (Exception e){ assertTrue(false);}
+    }
+
 }
+
