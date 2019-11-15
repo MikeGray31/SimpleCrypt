@@ -16,21 +16,21 @@ public class ROT13Test {
         String actual = cipher.rotate(s1, 'A');
 
         // Then
-        assertTrue(actual.equals(s2));
+        assertEquals(s2, actual);
     }
 
     @Test
     public void rotateStringTest1() {
         // Given
-        String s1 = "ABCDEF";
-        String s2 = "DEFABC";
+        String s1 = "ZABCDEF";
+        String s2 = "DEFZABC";
 
         // When
         ROT13 cipher = new ROT13();
         String actual = cipher.rotate(s1, 'D');
 
         // Then
-        assertTrue(actual.equals(s2));
+        assertEquals(s2, actual);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class ROT13Test {
         System.out.println(s1);
         System.out.println(actual);
         // Then
-        assertTrue(actual.equals(s2));
+        assertEquals(s2, actual);
     }
 
     @Test
@@ -64,14 +64,14 @@ public class ROT13Test {
         System.out.println(Q1);
         System.out.println(A1);
         // Then
-        assertTrue(actual.equals(A1));
+        assertEquals(A1, actual);
 
         // When
         String actual2 = cipher.decrypt(Q2);
         System.out.println(Q2);
         System.out.println(A2);
         // Then
-        assertTrue(actual2.equals(A2));
+        assertEquals(A2, actual2);
     }
     @Test
     public void cryptTest2() {
@@ -85,7 +85,7 @@ public class ROT13Test {
         String actual = cipher.crypt(cipher.crypt(Q1));
         System.out.println(actual);
         // Then
-        assertTrue(actual.equals(Q1));
+        assertEquals(Q1, actual);
     }
 
 }
