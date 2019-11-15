@@ -26,10 +26,8 @@ public class CaesarCipher  {
             boolean notALetter = true;
             Character next =  text.charAt(i);
             if(isAlphabetic(text.charAt(i))){
-
                 next =(char) (next + shift);
                 while(notALetter){
-
                     if(isLowerCase(text.charAt(i))){
                         if(next > 'z') next = (char) (next - 26);
                         else if(next < 'a') next = (char) (next + 26);

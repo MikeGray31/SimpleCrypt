@@ -4,7 +4,7 @@ import org.junit.Test;
 public class CaesarTest {
 
     @Test
-    public void EncryptionTest1(){
+    public void encryptionDecryptionTest1(){
         CaesarCipher caesar = new CaesarCipher(1);
         String plaintext = "ABCDEF";
         String expected1 = "BCDEFG";
@@ -17,7 +17,7 @@ public class CaesarTest {
     }
 
     @Test
-    public void EncryptionTest24(){
+    public void encryptionDecryptionTest24(){
         CaesarCipher caesar = new CaesarCipher(25);
         String plaintext = "ABCDEF";
         String expected1 = "ZABCDE";
